@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fleetman-webapp-deployment
+  labels:
+    app: fleetman-webapp-deployment
+spec:
+  minReadySeconds: 30
+  selector:
+    matchLabels:
+      app: fleetman-webapp-pod
+  replicas: 2
+  template: #template for pods
+    #we don't need a name under metatdata for the 
+    #pod but a label is needed since selectors rely on them
+    metadata:
+      labels:
+        app: fleetman-webapp-pod
+    spec:
+      containers:
+      - name: fleetman-webapp
+        image: richardchesterwood/k8s-fleetman-webapp-angular:release0-5
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+
+
+#to deploy the pod to kubectl : - kubectl apply -f <deployment file name>
+
+#to view rollout of a deployment - kubectl rollout status deploy <deployment name>
+
+#view deployment info :- kubectl describe <deployment name>
+
+#Execute command in kubernetes pod :- kubectl exec <pod name> <command e.g ls>
+
+#Interact with shell on pods container :- kubectl -it exec <container name> sh

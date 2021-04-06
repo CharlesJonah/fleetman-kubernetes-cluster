@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: fleetman-queue-replicaset
+  labels:
+    app: fleetman-queue-replicaset
+spec:
+  selector:
+    matchLabels:
+      app: fleetman-queue-pod
+  replicas: 2
+  template: #template for pods
+    #we don't need a name under metatdata for the 
+    #pod but a label is needed since selectors rely on them
+    metadata:
+      labels:
+        app: fleetman-queue-pod
+    spec:
+      containers:
+      - name: fleetman-queue
+        image: richardchesterwood/k8s-fleetman-queue:release1
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+
+
+#to deploy the replicaset to k8s : - kubectl apply -f <file name with replicaset>
+
+#view resplicaset info :- kubectl describe <replicaset name>
+
+#Execute command in kubernetes pod :- kubectl exec <pod name> <command e.g ls>
+
+#Interact with shell on pods container :- kubectl -it exec <container name> sh

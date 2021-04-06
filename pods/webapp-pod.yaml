@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: fleetman-webapp-pod
+  labels:
+    app: fleetman-webapp-pod
+spec:
+  containers:
+  - name: fleetman-webapp
+    image: richardchesterwood/k8s-fleetman-webapp-angular:release0-5
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+
+
+# to deploy the pod to kubectl : - kubectl apply -f first-pod.yaml
+
+#view pod info :- kubectl describe <pod name>
+
+#Execute command in kubernetes pod :- kubectl exec <pod name> <command e.g ls>
+
+#Interact with shell on pods container :- kubectl -it exec <container name> sh
