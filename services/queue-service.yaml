@@ -1,15 +1,18 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: fleetman-queue-service
+  name: fleetman-queue
 spec:
   selector:
     app: fleetman-queue-pod
   ports:
-  - name: http
-    port: 8161
-    nodePort: 30010
+    #external port accessible to the internet
+    - name: http
+      port: 8161
+      nodePort: 30010
+    #internal port to the cluster
+    - name: endpoint
+      port: 61616
   type: NodePort
-
 # to deploy the service to kubectl : - kubectl apply -f <service_filename>
 # view service info :- kubectl describe <service name>

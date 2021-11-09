@@ -1,16 +1,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: fleetman-webapp
+  name: fleetman-api-gateway
 spec:
   #This defines which pods are going to be represented by this service
   #The service becomes a network endpoint for either other service or maybe external uses to connect to e.g browser
   selector:
-    app: fleetman-webapp-pod
+    app: api-gateway-pod
   ports:
     - name: http #optional
-      port: 80
-      nodePort: 30080
-  type: NodePort
+      port: 8080
+  type: clusterIP
 # to deploy the service to kubectl : - kubectl apply -f <service_filename>
 # view service info :- kubectl describe <service name>

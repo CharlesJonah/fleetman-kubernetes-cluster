@@ -1,28 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: fleetman-queue-deployment
+  name: mongdb-deployment
   labels:
-    app: fleetman-queue-deployment
+    app: mongodb-deployment
 spec:
   selector:
     matchLabels:
-      app: fleetman-queue-pod
+      app: mongodb-pod
   replicas: 1
   template: #template for pods
     #we don't need a name under metatdata for the
     #pod but a label is needed since selectors rely on them
     metadata:
       labels:
-        app: fleetman-queue-pod
+        app: mongodb-pod
     spec:
       containers:
-        - name: fleetman-queue
-          image: richardchesterwood/k8s-fleetman-queue:release1
-          resources:
-            limits:
-              memory: "500Mi"
-              cpu: "500m"
+        - name: mongodb
+          image: mongo:3.6.5-jessie
 #to deploy the pod to kubectl : - kubectl apply -f <deployment file name>
 
 #to view rollout of a deployment - kubectl rollout status deploy <deployment name>

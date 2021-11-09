@@ -9,23 +9,21 @@ spec:
   selector:
     matchLabels:
       app: fleetman-webapp-pod
-  replicas: 2
+  replicas: 1
   template: #template for pods
-    #we don't need a name under metatdata for the 
+    #we don't need a name under metatdata for the
     #pod but a label is needed since selectors rely on them
     metadata:
       labels:
         app: fleetman-webapp-pod
     spec:
       containers:
-      - name: fleetman-webapp
-        image: richardchesterwood/k8s-fleetman-webapp-angular:release0-5
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
-
-
+        - name: fleetman-webapp
+          image: richardchesterwood/k8s-fleetman-webapp-angular:release0-5
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
 #to deploy the pod to kubectl : - kubectl apply -f <deployment file name>
 
 #to view rollout of a deployment - kubectl rollout status deploy <deployment name>
