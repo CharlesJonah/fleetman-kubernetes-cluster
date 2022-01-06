@@ -1,17 +1,16 @@
-# use this when deploying to local environment
+# use this when deploying to cloud
 apiVersion: v1
 kind: Service
 metadata:
-  name: fleetman-api-gateway
+  name: fleetman-webapp
 spec:
   #This defines which pods are going to be represented by this service
   #The service becomes a network endpoint for either other service or maybe external uses to connect to e.g browser
   selector:
-    app: api-gateway-pod
+    app: fleetman-webapp-pod
   ports:
     - name: http #optional
-      port: 8080
-      nodePort: 30020
-  type: NodePort
+      port: 80
+  type: LoadBalancer
 # to deploy the service to kubectl : - kubectl apply -f <service_filename>
 # view service info :- kubectl describe <service name>

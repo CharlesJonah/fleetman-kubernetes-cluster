@@ -2,8 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: api-gateway-deployment
-  labels:
-    app: api-gateway-deployment
 spec:
   selector:
     matchLabels:
@@ -18,10 +16,10 @@ spec:
     spec:
       containers:
         - name: fleetman-api-gateway
-          image: richardchesterwood/k8s-fleetman-api-gateway:release1
+          image: richardchesterwood/k8s-fleetman-api-gateway:release2
           resources:
             limits:
-              memory: "300Mi"
+              memory: "500Mi"
               cpu: "500m"
           env:
             - name: SPRING_PROFILES_ACTIVE

@@ -1,0 +1,17 @@
+# How we want our persistent volume implemented
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: new-local-storage
+spec:
+  storageClassName: mylocalstorage
+  hostPath:
+    path: "/mnt/new_dir/some/structure"
+    type: DirectoryOrCreate
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 20Gi
+
+# view persistent volumes
+# - kubectl get pv

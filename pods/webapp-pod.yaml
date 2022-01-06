@@ -21,3 +21,5 @@ spec:
 #Interact with shell on pods container :- kubectl -it exec <container name> sh
 
 #To view logs :-  kubectl logs <pod name/id>
+
+# Get pods with more information e.g the actual node the pod is running in :- kubectl get pods -o wide

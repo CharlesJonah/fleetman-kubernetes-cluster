@@ -2,8 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: position-tracker-deployment
-  labels:
-    app: position-tracker-deployment
 spec:
   selector:
     matchLabels:
@@ -18,7 +16,7 @@ spec:
     spec:
       containers:
         - name: fleetman-position-tracker
-          image: richardchesterwood/k8s-fleetman-position-tracker:release1
+          image: richardchesterwood/k8s-fleetman-position-tracker:release3
           resources:
             limits:
               memory: "300Mi"

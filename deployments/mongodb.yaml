@@ -2,8 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mongdb-deployment
-  labels:
-    app: mongodb-deployment
 spec:
   selector:
     matchLabels:
@@ -19,6 +17,21 @@ spec:
       containers:
         - name: mongodb
           image: mongo:3.6.5-jessie
+          resources:
+            limits:
+              memory: "300Mi"
+              cpu: "500m"
+          volumeMounts:
+            - name: mongo-persistent-storage
+              mountPath: /data/db
+      volumes:
+        - name: mongo-persistent-storage
+          # pointer to the configuration of what do we want  in
+          # fleetman-kubernetes-cluster/persistent-volume-claims/local-storage.yaml
+          persistentVolumeClaim:
+            claimName: new-mongo-pvc
+
+
 #to deploy the pod to kubectl : - kubectl apply -f <deployment file name>
 
 #to view rollout of a deployment - kubectl rollout status deploy <deployment name>

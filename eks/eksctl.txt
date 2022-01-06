@@ -1,0 +1,9 @@
+#create cluster in aws
+
+eksctl create cluster --name <cluster name> --nodes-min=3 --profile <aws profile name>
+
+# delete cluster in aws
+
+eksctl delete cluster <cluster name> --profile <aws profile name>
+
+# remember to delete ebs volumes that were  created

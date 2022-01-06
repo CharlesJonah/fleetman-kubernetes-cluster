@@ -1,0 +1,11 @@
+# How we want our persistent volume implemented
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: cloud-ssd
+provisioner: kubernetes.io/aws-ebs
+parameters:
+  type: gp2
+
+# view persistent volumes
+# - kubectl get pv

@@ -1,0 +1,15 @@
+# What do we want in regard to persistent volumes
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: new-mongo-pvc
+spec:
+  storageClassName: cloud-ssd
+  resources:
+    requests:
+      storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+
+# view persistent volume claims
+# - kubectl get pvc

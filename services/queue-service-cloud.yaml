@@ -1,4 +1,4 @@
-# use this when deploying to local environment
+# use this when deploying to cloud
 apiVersion: v1
 kind: Service
 metadata:
@@ -10,10 +10,9 @@ spec:
     #external port accessible to the internet
     - name: http
       port: 8161
-      nodePort: 30010
     #internal port to the cluster
     - name: endpoint
       port: 61616
-  type: NodePort
+  type: ClusterIP
 # to deploy the service to kubectl : - kubectl apply -f <service_filename>
 # view service info :- kubectl describe <service name>

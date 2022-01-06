@@ -2,8 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: fleetman-webapp-deployment
-  labels:
-    app: fleetman-webapp-deployment
 spec:
   minReadySeconds: 30
   selector:
@@ -19,11 +17,14 @@ spec:
     spec:
       containers:
         - name: fleetman-webapp
-          image: richardchesterwood/k8s-fleetman-webapp-angular:release0-5
+          image: richardchesterwood/k8s-fleetman-webapp-angular:release2
           resources:
             limits:
               memory: "128Mi"
               cpu: "500m"
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: production-microservice
 #to deploy the pod to kubectl : - kubectl apply -f <deployment file name>
 
 #to view rollout of a deployment - kubectl rollout status deploy <deployment name>
