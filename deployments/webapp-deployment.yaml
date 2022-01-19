@@ -19,12 +19,20 @@ spec:
         - name: fleetman-webapp
           image: richardchesterwood/k8s-fleetman-webapp-angular:release2
           resources:
+            resources:
+              memory: "300Mi"
+              cpu: "300m"
             limits:
               memory: "128Mi"
               cpu: "500m"
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: production-microservice
+
+# The resources limits(resources limit section) should be the same or higher than the resourses requests (resources - request section)
+# Requests are important to help the scheduler make intelligent decisions on which node to place the pod
+# Limits are important to prevent the container from taking up all the memory in a cluster node since this can lead to cluster failure
+
 #to deploy the pod to kubectl : - kubectl apply -f <deployment file name>
 
 #to view rollout of a deployment - kubectl rollout status deploy <deployment name>
