@@ -9,8 +9,9 @@ spec:
     - name: fleetman-webapp
       image: richardchesterwood/k8s-fleetman-webapp-angular:release0-5
       resources:
-        memory: "128Mi"
-        cpu: "300m"
+        requests:
+          memory: "128Mi"
+          cpu: "300m"
         limits:
           memory: "300Mi"
           cpu: "500m"

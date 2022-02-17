@@ -18,7 +18,7 @@ spec:
         - name: fleetman-position-tracker
           image: richardchesterwood/k8s-fleetman-position-tracker:release3
           resources:
-            resources:
+            requests:
               memory: "300Mi"
               cpu: "300m"
             limits:

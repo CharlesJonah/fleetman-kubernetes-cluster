@@ -18,7 +18,7 @@ spec:
         - name: mongodb
           image: mongo:3.6.5-jessie
           resources:
-            resources:
+            requests:
               memory: "300Mi"
               cpu: "300m"
             limits:

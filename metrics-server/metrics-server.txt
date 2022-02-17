@@ -1,0 +1,29 @@
+
+To enable metrics server do : -
+ - minikube addons enable metrics-server
+
+Run the following command using the kubectl command line utility to see if metrics-server is running in your cluster:
+ - kubectl get pods --all-namespaces | grep metrics-server
+
+If Metrics Server is already running, you’ll see details on the running pods, as in the response below
+ - kube-system   metrics-server-v0.3.1-57c75779f-8sm9r                       2/2     Running   0          16h
+
+If no pods are returned, you can deploy Metrics Server by cloning and applying a series of YAML manifests:
+
+ - git clone https://github.com/kubernetes-sigs/metrics-server.git
+ - cd metrics-server
+ - kubectl apply -f deploy/kubernetes/
+
+The kubectl top command returns current CPU and memory usage for a cluster’s pods or nodes, or for a particular pod or node if specified.
+
+
+
+- For pods run
+    - kubectl top pod
+
+For nodes run
+ - kubectl top node
+
+
+REFERENCE
+- https://www.datadoghq.com/blog/how-to-collect-and-graph-kubernetes-metrics/

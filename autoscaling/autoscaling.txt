@@ -1,0 +1,65 @@
+For autoscaling to work, metrics server needs to be on, For more details about metrics server, look at metrics-server
+section.
+
+To set autoscaling for a deployment run :-
+
+ - kubectl autoscale deployment <deployment-name> --cpu-percent <in reference to resources request for that deployment e.g 50> --min 1 --max 4
+ - e.g  kubectl autoscale deployment api-gateway-deployment --cpu-percent 50 --min 1 --max 4
+
+To view deployed autoscale objects :-
+ - kubectl get hpa
+ - kubectl get hpa <hpa-name>
+
+
+To view detailed info about a hpa do :-
+ - kubectl describe hpa <hpa-name>
+
+To generate the hpa object in yaml so that you add to source control do :-
+ - kubectl get hpa <hpa-name> -o yaml
+ 
+ The above command will generate :-
+  
+
+To delete an hpa do:
+ - kubectl delete hpa <hpa-name>
+
+
+--------------------------------------------------------------------------------------------------
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  annotations:
+    autoscaling.alpha.kubernetes.io/conditions: '[{"type":"AbleToScale","status":"True","lastTransitionTime":"2022-02-17T20:03:09Z","reason":"ReadyForNewScale","message":"recommended
+      size matches current size"},{"type":"ScalingActive","status":"True","lastTransitionTime":"2022-02-17T20:03:09Z","reason":"ValidMetricFound","message":"the
+      HPA was able to successfully calculate a replica count from cpu resource utilization
+      (percentage of request)"},{"type":"ScalingLimited","status":"False","lastTransitionTime":"2022-02-17T20:03:09Z","reason":"DesiredWithinRange","message":"the
+      desired count is within the acceptable range"}]'
+    autoscaling.alpha.kubernetes.io/current-metrics: '[{"type":"Resource","resource":{"name":"cpu","currentAverageUtilization":4,"currentAverageValue":"14m"}}]'
+  creationTimestamp: "2022-02-17T20:02:53Z"
+  name: api-gateway-deployment
+  namespace: default
+  resourceVersion: "240339"
+  uid: 7acc7dd2-be89-43d9-a95b-8f8b09352ff8
+spec:
+  maxReplicas: 4
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: api-gateway-deployment
+  targetCPUUtilizationPercentage: 50
+status:
+  currentCPUUtilizationPercentage: 4
+  currentReplicas: 1
+  desiredReplicas: 1
+
+--------------------------------------------------------------------------------------------------
+
+- When creating the template in source control you can remove the below fields
+    -  annotations
+    -  creationTimestamp
+    -  resourceVersion
+    -  uid
+    - status
+- Under metadata section remember to add fields
+ - name : <give the hpa a name>

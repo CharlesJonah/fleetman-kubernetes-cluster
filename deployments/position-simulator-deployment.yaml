@@ -18,7 +18,7 @@ spec:
         - name: fleetman-position-simulator
           image: richardchesterwood/k8s-fleetman-position-simulator:release2
           resources:
-            resources:
+            requests:
               memory: "300Mi"
               cpu: "300m"
             limits:
