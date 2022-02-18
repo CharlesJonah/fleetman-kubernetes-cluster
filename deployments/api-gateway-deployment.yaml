@@ -17,6 +17,10 @@ spec:
       containers:
         - name: fleetman-api-gateway
           image: richardchesterwood/k8s-fleetman-api-gateway:release2
+          readinessProbe:
+            httpGet:
+              path: / # for webservers you need to create an endpoint to be called so as to test readiness
+              port: 8080
           resources:
             requests:
               memory: "300Mi"
