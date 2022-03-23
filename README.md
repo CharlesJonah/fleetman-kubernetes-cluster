@@ -27,6 +27,14 @@ To get specific resources in a certain namespace
 
 - kubectl get <resource e.g pod, service> -n <namespace>
 
+- Get all nodes in a cluster
+
+kubectl get nodes
+
+- View resources on all nodes
+
+  kubectl describe nodes
+
 - View a node resources
 
 kubectl describe node <nodename e.g minikube>

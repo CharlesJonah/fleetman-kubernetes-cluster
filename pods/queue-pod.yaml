@@ -31,3 +31,8 @@ spec:
 #Interact with shell on pods container :- kubectl -it exec <container name> sh
 
 #To view logs :-  kubectl logs -f <pod name/id>
+
+
+# Get into the shell of a pod e.g bash
+
+# - kubectl exec -t <pod-id> bash

@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: global-config-v1
+data:
+  DATABASE_USERNAME: 'username'
+  DATABASE_PASSWORD: 'password'
+
+
+# NB
+# - As of now to update a config map you need to create another one with the a different name and the changed values
+# - You then reference the new config map name in your deployments/or where you have used them
+# - You then need to first apply the config map and then after that apply the files referencing the config map e.g deployments
+
+# to apply it us
+# - kubectl apply -f <confog-map yaml file>
+
+
+# to view config maps
+
+# kubectl get cm
+
+
+# to describe a config map
+
+# kubectl describe cm <config-map-object name. i.e name in the metadata section>
+
+

@@ -21,6 +21,9 @@ spec:
             httpGet:
               path: / # for webservers you need to create an endpoint to be called so as to test readiness
               port: 8080
+
+          # LOOK UP ALSO HOW TO CONFIGURE LIVENESS PROBE WHERE NEEDED
+
           resources:
             requests:
               memory: "300Mi"
@@ -31,6 +34,14 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: production-microservice
+           # used to load key value pairs in a config map so that they can be used by the containers as environment variables
+          envFrom:
+            # to use config map
+            - configMapRef:
+                name: global-config-v1
+            # to use secrets
+            - secretRef:
+                name: global-credentials-v1
 
 
 # The resources limits(resources limit section) should be the same or higher than the resourses requests (resources - request section)

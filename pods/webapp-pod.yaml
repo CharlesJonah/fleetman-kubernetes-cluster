@@ -32,3 +32,8 @@ spec:
 #To view logs :-  kubectl logs <pod name/id>
 
 # Get pods with more information e.g the actual node the pod is running in :- kubectl get pods -o wide
+
+
+# Get into the shell of a pod e.g bash
+
+# - kubectl exec -t <pod-id> bash
