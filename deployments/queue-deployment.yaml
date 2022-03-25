@@ -28,10 +28,10 @@ spec:
           resources:
             requests:
               memory: "300Mi"
-              cpu: "300m"
+              cpu: "100m"
             limits:
-              memory: "500Mi"
-              cpu: "500m"
+              memory: "300Mi"
+              cpu: "100m"
           # used to load key value pairs in a config map so that they can be used by the containers as environment variables
           envFrom:
             # to use config map
