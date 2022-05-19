@@ -24,6 +24,11 @@ spec:
 
           # LOOK UP ALSO HOW TO CONFIGURE LIVENESS PROBE WHERE NEEDED
 
+
+          # remember to use qos rules as given here
+          # https://www.udemy.com/course/kubernetes-microservices/learn/lecture/14727688#overview
+          # https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/
+          # https://medium.com/google-cloud/quality-of-service-class-qos-in-kubernetes-bb76a89eb2c6
           resources:
             requests:
               memory: "300Mi"

@@ -1,0 +1,53 @@
+# To enable ingress do : -
+#  - minikube addons enable ingress
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress
+  labels:
+    name: ingress
+spec:
+  rules:
+    # the host used below is/can be mapped to the local minikube ip so that it can work(i.e if running locally)
+    - host: fleetman.com
+      http:
+        paths:
+        - pathType: Prefix
+          path: "/"
+          backend:
+            service:
+              # the actual name given to a service in it's metadata -> name section
+              name: fleetman-webapp
+              port: 
+                # this is the internal port in the cluster and not the NodePort
+                number: 80
+    # the host used below is/can be mapped to the local minikube ip so that it can work(i.e if running locally)
+    - host: queue.fleetman.com
+      http:
+        paths:
+        - pathType: Prefix
+          path: "/"
+          backend:
+            service:
+              # the actual name given to a service in it's metadata -> name section
+              name: fleetman-queue
+              port: 
+                # this is the internal port in the cluster and not the NodePort
+                number: 8161
+
+
+# To apply ingress do
+# - kubectl apply -f <ingress-file-name>
+
+
+#NB - If you do not specify a ingress namespace, it works only in the default namespace
+#NB - You will need an ingress object for every namespace you want your services that use ingress to be in
+
+# Also look for how you can secure you ingress services that you do not want to be accessed by the public
+# e.g queue.fleetman.com
+# - here is the guide for nginx ingress controller basic authentication - https://kubernetes.github.io/ingress-nginx/examples/auth/basic/
+
+# TO USE INGRESS IN THE CLOUD E.G AWS, FOLLOW THE BELOW GUIDE
+# - https://kubernetes.github.io/ingress-nginx/deploy/#aws
+# - https://www.udemy.com/course/kubernetes-microservices/learn/lecture/14727800#overview

@@ -1,0 +1,31 @@
+Install helm 
+ - brew install helm
+
+
+Add a helm package repo
+- helm repo add <the-name-you-want-to-name-the-repo-locally> <link-of-the-repo>
+- e.g helm repo add bitnami https://charts.bitnami.com/bitnami
+
+Install a helm package
+- helm install <the-name-you-want-to-name-the-package-locally> <local-repo-name>/<package-name-as-given-by-the-package-distributor>
+- e.g helm install mysql bitnami/mysql
+
+View installed packages
+ - helm list
+
+Uninstall a helm package
+- helm uninstall <local-name-of-package>
+- e.g helm uninstall mysql
+
+
+View a charts configuration
+- helm show values <local-repo-name>/<package-name-as-given-by-the-package-distributor>
+
+Changing configuration in values.yaml
+- helm show values <local-repo-name>/<package-name-as-given-by-the-package-distributor>   > values.yaml
+- Modify the configuration to your liking
+- helm upgrade <the-name-you-want-to-name-the-package-locally> <local-repo-name>/<package-name-as-given-by-the-package-distributor> --values=values.yaml
+
+
+To Create a Helm chart run
+ - helm create <chart-name>

@@ -1,0 +1,4 @@
+
+To enable ingress do : -
+ - minikube addons enable ingress
+

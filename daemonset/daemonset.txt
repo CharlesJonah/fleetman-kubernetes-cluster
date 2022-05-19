@@ -1,0 +1,3 @@
+Refer:
+ - https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
+ - https://www.udemy.com/course/kubernetes-microservices/learn/lecture/14727828#overview

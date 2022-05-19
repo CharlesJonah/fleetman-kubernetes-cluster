@@ -14,6 +14,10 @@ To see/start k8s dashboard:
 
 - mininkube dashboard
 
+Can't access minikube service using NodePort from host on Mac
+
+- https://stackoverflow.com/questions/63600378/cant-access-minikube-service-using-nodeport-from-host-on-mac
+
 To delete a resource
 
 - kubectl delete <resource e.g po, svc, rs> <name of resource>
@@ -38,6 +42,10 @@ kubectl get nodes
 - View a node resources
 
 kubectl describe node <nodename e.g minikube>
+
+To get events on what is happening in a cluster run:
+
+- kubectl get events
 
 **_ClusterIP vs Nodeport vs Loadbalancer_**
 

@@ -11,6 +11,7 @@ spec:
   ports:
     - name: http #optional
       port: 80
-  type: LoadBalancer
+  # we are using ClusterIP since we are using an Ingress to provide the load balancing service in cloud
+  type: ClusterIP
 # to deploy the service to kubectl : - kubectl apply -f <service_filename>
 # view service info :- kubectl describe <service name>
